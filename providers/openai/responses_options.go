@@ -277,7 +277,11 @@ func IsResponsesModel(modelID string) bool {
 
 // IsResponsesReasoningModel checks if a model ID is a Responses API reasoning model for OpenAI.
 func IsResponsesReasoningModel(modelID string) bool {
-	return slices.Contains(responsesReasoningModelIDs, modelID)
+	return slices.Contains(responsesReasoningModelIDs, modelID) ||
+		strings.Contains(strings.Lower(modelID), "gpt-5.2") ||
+		strings.Contains(strings.Lower(modelID), "gpt-5.3") ||
+		strings.Contains(strings.Lower(modelID), "gpt-5.4") ||
+		strings.Contains(strings.Lower(modelID), "gpt-5.5")
 }
 
 // SearchContextSize controls how much context window space the
