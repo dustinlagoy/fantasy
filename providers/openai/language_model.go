@@ -596,7 +596,7 @@ func isReasoningModel(modelID string) bool {
 		strings.HasPrefix(modelID, "o3") || strings.Contains(modelID, "-o3") ||
 		strings.HasPrefix(modelID, "o4") || strings.Contains(modelID, "-o4") ||
 		strings.HasPrefix(modelID, "oss") || strings.Contains(modelID, "-oss") ||
-		strings.Contains(modelID, "gpt-5") || strings.Contains(modelID, "gpt-5-chat")
+		strings.Contains(strings.ToLower(modelID), "gpt-5")
 }
 
 func isSearchPreviewModel(modelID string) bool {
@@ -605,12 +605,14 @@ func isSearchPreviewModel(modelID string) bool {
 
 func supportsFlexProcessing(modelID string) bool {
 	return strings.HasPrefix(modelID, "o3") || strings.Contains(modelID, "-o3") ||
-		strings.Contains(modelID, "o4-mini") || strings.Contains(modelID, "gpt-5")
+		strings.Contains(modelID, "o4-mini") ||
+		strings.Contains(strings.ToLower(modelID), "gpt-5")
 }
 
 func supportsPriorityProcessing(modelID string) bool {
-	return strings.Contains(modelID, "gpt-4") || strings.Contains(modelID, "gpt-5") ||
-		strings.Contains(modelID, "gpt-5-mini") || strings.HasPrefix(modelID, "o3") ||
+	return strings.Contains(modelID, "gpt-4") ||
+		strings.Contains(strings.ToLower(modelID), "gpt-5") ||
+		strings.HasPrefix(modelID, "o3") ||
 		strings.Contains(modelID, "-o3") || strings.Contains(modelID, "o4-mini")
 }
 
